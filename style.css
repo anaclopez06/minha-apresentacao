@@ -1,0 +1,109 @@
+/* ---------- Base ---------- */
+body {
+  margin: 0;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f0f4f8;
+  color: #222;
+}
+
+/* ---------- Topo ---------- */
+.topo {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.foto {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;          /* deixa a foto redonda */
+  /* object-fit: cover (novo, não visto na Aula 9): corta a imagem
+     para preencher a caixa sem deformar. Veio da documentação MDN. */
+  object-fit: cover;
+  border: 4px solid #4a6fa5;
+
+  /* ANIMAÇÃO AUTOMÁTICA: usa o @keyframes "aparecer" abaixo,
+     dura 2 segundos e roda ao carregar a página */
+  animation: aparecer 2s;
+}
+
+/* @keyframes: define os estágios da animação.
+   A foto começa invisível e sobe um pouco, depois fica normal. */
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.apresentacao {
+  max-width: 600px;
+  margin: 20px auto 0;         /* centraliza o texto */
+  font-size: 18px;
+}
+
+/* ---------- Grid de cards ---------- */
+.cards {
+  display: grid;                              /* ativa o CSS Grid */
+  grid-template-columns: repeat(3, 1fr);      /* 3 colunas iguais */
+  gap: 20px;                                  /* espaço entre os cards */
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* ---------- Card ---------- */
+.card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+
+  /* TRANSITION: faz a mudança do hover acontecer em 0.3s
+     (suave) em vez de instantânea. Fica no estado normal. */
+  transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  /* TRANSFORM: sobe 10px e aumenta 5% */
+  transform: translateY(-10px) scale(1.05);
+  background-color: #dbe8ff;    /* muda a cor de fundo suavemente */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;            /* mesmo caso da foto: recorta sem deformar */
+  border-radius: 8px;
+}
+
+.card h2 {
+  color: #4a6fa5;
+  margin: 12px 0 8px;
+}
+
+.card p {
+  margin: 0;
+  font-size: 15px;
+}
+
+/* ---------- Responsivo ----------
+   @media (novo, não visto na Aula 9): aplica o CSS de dentro
+   só quando a tela tem no máximo a largura indicada.
+   Veio da documentação MDN. */
+@media (max-width: 800px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);   /* 2 colunas no tablet */
+  }
+}
+
+@media (max-width: 500px) {
+  .cards {
+    grid-template-columns: 1fr;              /* 1 coluna no celular */
+  }
+}
